@@ -1,69 +1,247 @@
-import Image from "next/image";
+import ArticleCard from "@/components/ArticleCard";
+import HandwrittenNote from "@/components/HandwrittenNote";
+import PaperNote from "@/components/PaperNote";
+import ShortPerception from "@/components/ShortPerception";
+import TapedPhoto from "@/components/TapedPhoto";
+import { getAllArticles } from "@/lib/articles";
+import Link from "next/link";
+
+const categories = [
+  {
+    name: "Liderança",
+    description: "Poder, responsabilidade e pessoas.",
+    href: "/temas/lideranca",
+  },
+  {
+    name: "Política",
+    description: "Estado, instituições e sociedade.",
+    href: "/temas/politica",
+  },
+  {
+    name: "Fé",
+    description: "Crenças, dúvidas e espiritualidade.",
+    href: "/temas/fe",
+  },
+  {
+    name: "Sociedade",
+    description: "Comportamentos e contradições.",
+    href: "/temas/sociedade",
+  },
+  {
+    name: "Cotidiano",
+    description: "O extraordinário escondido no comum.",
+    href: "/temas/cotidiano",
+  },
+  {
+    name: "Lições",
+    description: "Aquilo que a vida precisou ensinar.",
+    href: "/temas/licoes",
+  },
+];
 
 export default function Home() {
+  const articles = getAllArticles();
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      <section className="mx-auto grid min-h-[650px] max-w-7xl items-center gap-14 px-6 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:px-10">
+        <div>
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--wine)]">
+            Ideias em movimento
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          <h1 className="editorial max-w-3xl text-6xl font-medium leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
+            Pensar também é permitir-se mudar.
+          </h1>
+
+          <p className="mt-8 max-w-xl text-base leading-7 text-[var(--muted)]">
+            Reflexões sobre liderança, política, fé, sociedade, cotidiano e
+            aquilo que a experiência vai nos ensinando pelo caminho.
+          </p>
+
+          <div className="mt-8 max-w-sm rotate-[-1deg]">
+            <p className="handwritten text-2xl leading-7 text-[var(--wine)]">
+              algumas ideias merecem respostas.
+              <br />
+              outras merecem apenas novas perguntas.
+            </p>
+          </div>
+
+          <Link
+            href="/artigos"
+            className="mt-8 inline-block bg-[var(--wine)] px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+            Explorar percepções
+          </Link>
+        </div>
+
+        <div className="relative pb-16">
+
+          <TapedPhoto
+            src="/images/hero.webp"
+            alt="Imagem que acompanha a reflexão principal"
+            caption="algumas ideias começam apenas com uma observação."
+            priority
+          />
+
+          <PaperNote className="relative z-10 -mt-14 ml-4 rotate-[-1deg] md:ml-14">
+            <span className="editorial absolute -left-3 -top-8 text-8xl text-[var(--wine)]/20">
+              “
+            </span>
+
+            <blockquote className="editorial text-2xl italic leading-snug md:text-3xl">
+              Prefiro ser essa metamorfose ambulante...
+            </blockquote>
+
+            <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-[var(--muted)]">
+              Raul Seixas · Metamorfose Ambulante
+            </p>
+
+            <div className="mt-8 border-t border-[var(--line)] pt-6">
+              <HandwrittenNote rotate="right">
+                Minhas percepções não são minhas verdades definitivas.
+              </HandwrittenNote>
+            </div>
+          </PaperNote>
+
+        </div>
+      </section>
+
+      <section id="temas" className="border-y border-[var(--line)] bg-white/25">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--wine)]">
+            Sobre o que penso
+          </p>
+
+          <h2 className="editorial mt-3 text-5xl">Temas</h2>
+
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3">
+
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                href={category.href}
+                className="
+                            group
+                            block
+                            border-t
+                            border-[var(--line)]
+                            px-1
+                            py-8
+                            transition-colors
+                            hover:bg-[var(--paper-dark)]
+                            md:px-6
+                          "
+              >
+                <div className="flex items-center justify-between">
+                  <h3 className="editorial text-3xl transition-colors group-hover:text-[var(--wine)]">
+                    {category.name}
+                  </h3>
+
+                  <span className="text-xl text-[var(--wine)] opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100">
+                    ↗
+                  </span>
+                </div>
+
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  {category.description}
+                </p>
+              </Link>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      <section id="artigos" className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="flex items-end justify-between border-b border-[var(--ink)] pb-5">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--wine)]">
+              Escritos recentes
+            </p>
+            <h2 className="editorial mt-2 text-5xl">Últimas percepções</h2>
+          </div>
+        </div>
+
+        <div className="divide-y divide-[var(--line)]">
+          {articles.map((article) => (
+            <ArticleCard
+              key={article.slug}
+              slug={article.slug}
+              category={article.category}
+              date={article.date}
+              title={article.title}
+              description={article.description}
+              readingTime={article.readingTime}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="border-t border-[var(--line)] bg-white/20">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+
+          <div className="max-w-xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--wine)]">
+              Anotações
+            </p>
+
+            <h2 className="editorial mt-2 text-5xl">
+              Percepções breves
+            </h2>
+
+            <p className="mt-5 text-sm leading-7 text-[var(--muted)]">
+              Nem toda percepção precisa se transformar em um ensaio.
+              Algumas ideias merecem apenas ser registradas.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+            <ShortPerception date="04 OUT 2026" rotate="left">
+              Nem toda resposta precisa ser imediata.
+            </ShortPerception>
+
+            <ShortPerception date="01 OUT 2026" rotate="right">
+              Mudar de opinião também pode ser sinal de coerência.
+            </ShortPerception>
+
+            <ShortPerception date="28 SET 2026" rotate="left">
+              Ouvir também é liderança.
+            </ShortPerception>
+
+            <ShortPerception date="25 SET 2026" rotate="right">
+              Algumas certezas envelhecem antes de nós.
+            </ShortPerception>
+
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="sobre"
+        className="border-t border-[var(--line)] bg-[var(--ink)] text-[var(--paper)]"
+      >
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-2 lg:px-10">
+          <div>
+            <div className="editorial text-4xl">minhas percepções
+              <span className="text-[var(--wine)]">.</span>
+            </div>
+            <p className="mt-4 max-w-md text-sm leading-7 text-white/60">
+              Um caderno público de pensamentos, dúvidas, experiências e ideias
+              em permanente construção.
+            </p>
+          </div>
+
+          <div className="lg:text-right">
+            <p className="editorial text-3xl italic">
+              Observar. Questionar. Mudar.
+            </p>
+            <p className="mt-5 text-[10px] uppercase tracking-[0.25em] text-white/40">
+              Paulo Felipe Leitão · 2026
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
